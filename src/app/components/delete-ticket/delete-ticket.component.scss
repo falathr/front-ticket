@@ -1,0 +1,45 @@
+$primary: #198754;
+$secondary: #6db33f;
+
+h1 {
+  margin-left: 0px;
+  text-align: center;
+}
+
+section {
+  padding-right: 30px;
+  padding-left: 30px;
+  padding-top: 0em;
+}
+
+.centrar-boton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  padding: 2% 5%;
+
+  input,
+  select {
+    text-align: center;
+  }
+
+  div .row .col {
+    width: 50%;
+  }
+
+  .subtitle {
+    height: 10%;
+    background: $primary;
+    color: white;
+    padding: 2px;
+    border: solid $primary 1px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 19px;
+    justify-self: center;
+    align-self: center;
+  }
+}

@@ -1,0 +1,20 @@
+<mat-dialog-content class="mat-typography">
+  <section>
+    <div class="main">
+      <h1 class="mb-3 subtitle">ELIMINAR TICKET</h1>
+      <form [formGroup]="agregarTicket" class="main-form">
+        <div class="row mb-4 contenedor">
+          <div>
+            <mat-form-field class="example-form-field-2">
+              <mat-label>Buscar por número de ticket</mat-label>
+              <input matInput placeholder="Ej: FAMISW" formControlName="consultarTick">
+            </mat-form-field>
+          </div>
+          <div class="centrar-boton"><button mat-raised-button class="btn-buscar" (click)="consultarTickets()">Buscar</button></div>
+        </div>
+      </form>
+    </div>
+  </section>
+</mat-dialog-content>
+
+

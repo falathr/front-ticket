@@ -1,0 +1,33 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="modalGetTicket()">
+      <mat-icon>search</mat-icon>
+      <span>Consultar Tickets</span>
+    </button>
+    <button mat-menu-item (click)="agregarTicket()">
+      <mat-icon>save</mat-icon>
+      <span>Guardar nuevo Ticket</span>
+    </button>
+    <button mat-menu-item (click)="actualizarTicket()">
+      <mat-icon>update</mat-icon>
+      <span>Actualizar Ticket</span>
+    </button>
+    <button mat-menu-item (click)="modalDeleteTicket()">
+      <mat-icon>delete</mat-icon>
+      <span>Borrar Ticket</span>
+    </button>
+  </mat-menu>
+
+  <span>Famisanar tickets</span>
+  <span class="example-spacer"></span>
+  <a mat-icon-a class="example-icon favorite-icon" aria-label="Example icon-a with heart icon" href="https://twitter.com/EPS_Famisanar">
+    <i class="fa-brands fa-x-twitter"></i>
+  </a>
+  <a mat-icon-a class="example-icon" aria-label="Example icon-a with share icon" href="https://www.instagram.com/eps_famisanar/">
+    <i class="fa-brands fa-instagram"></i>
+  </a>
+</mat-toolbar>
+

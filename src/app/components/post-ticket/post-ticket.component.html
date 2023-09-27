@@ -1,0 +1,139 @@
+<mat-dialog-content class="mat-typography">
+  <section>
+    <div class="main">
+      <h1 class="mb-3 subtitle">AGREGAR TICKET</h1>
+      <form [formGroup]="agregarTicket" class="main-form">
+        <div class="row mb-4 contenedor">
+          <div class="col">
+            <mat-form-field class="example-form-field" appearance="fill">
+              <mat-label>Ticket</mat-label>
+              <input matInput id="ticket" class="form-control" formControlName="ticket">
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="example-form-field" appearance="fill">
+              <mat-label>Tipo</mat-label>
+              <mat-select formControlName="tipo">
+                <mat-option value="1">Requerimiento</mat-option>
+                <mat-option value="2">SIA</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row mb-4 contenedor">
+          <div class="col">
+            <mat-form-field class="example-form-field-1" appearance="fill">
+              <mat-label>Descripción</mat-label>
+              <textarea matInput id="descripcion" class="form-control" formControlName="descripcion"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field lass="example-form-field" appearance="fill">
+              <mat-label>Tema</mat-label>
+              <mat-select formControlName="tema">
+                <mat-option *ngFor="let temas of listaTemas" value="{{temas.id}}">
+                  {{temas.desc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row mb-4 contenedor">
+          <div class="col">
+            <mat-form-field class="example-form-field" appearance="fill">
+              <mat-label>Solicitante</mat-label>
+              <input matInput id="solicitante" class="form-control" formControlName="solicitante">
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field lass="example-form-field" appearance="fill">
+              <mat-label>Gerencia</mat-label>
+              <mat-select formControlName="gerencia">
+                <mat-option *ngFor="let gerencias of listaGerencia" value="{{gerencias.id}}">
+                  {{gerencias.desc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row mb-4 contenedor">
+          <div class="col">
+            <mat-form-field class="example-full-width-1" appearance="fill">
+              <mat-label>Fecha solución</mat-label>
+              <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="dp3" formControlName="fechaSol">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="dp3"></mat-datepicker-toggle>
+              <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row mb-4 contenedor">
+          <div class="col">
+            <mat-form-field class="example-form-field" appearance="fill">
+              <mat-label>Responsable</mat-label>
+              <input matInput id="responsable" class="form-control" formControlName="responsable">
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field lass="example-form-field" appearance="fill">
+              <mat-label>Estado TI</mat-label>
+              <mat-select formControlName="estadoTI">
+                <mat-option *ngFor="let casosLista of listaCasos" value="{{casosLista.id}}">
+                  {{casosLista.desc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row mb-4 contenedor">
+          <div class="col">
+            <mat-form-field class="example-form-field" appearance="fill">
+              <mat-label>Requerido</mat-label>
+              <mat-select formControlName="requerido">
+                <mat-option value="1">SI</mat-option>
+                <mat-option value="2">NO</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="example-form-field" appearance="fill">
+              <mat-label>De Ley</mat-label>
+              <mat-select formControlName="deLey">
+                <mat-option value="1">SI</mat-option>
+                <mat-option value="2">No</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row mb-4 contenedor">
+          <div>
+            <mat-form-field class="example-full-width-1" appearance="fill">
+              <mat-label>observaciones</mat-label>
+              <textarea matInput id="observaciones" class="form-control" formControlName="observaciones"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <div class="btn-container">
+    <div class="btn-opciones">
+      <button id="boton" mat-button class="btn btn-success" [disabled]="!agregarTicket.valid" (click)="postTicket()">
+        Guardar
+      </button>
+    </div>
+    <div class="btn-adicionar">
+      <button id="boton" mat-button mat-dialog-close class="btn btn-danger">
+        Cerrar
+      </button>
+    </div>
+  </div>
+</mat-dialog-actions>
+
+
