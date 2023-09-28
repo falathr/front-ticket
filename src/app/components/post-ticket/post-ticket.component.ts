@@ -1,4 +1,4 @@
-import {  Component, OnInit, ViewChild } from '@angular/core';
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { TicketService } from '../services/post-ticket.service';
@@ -10,6 +10,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { ConsultarGerenciaService } from '../services/consultar-gerencia.service';
 import { ConsultarTemasService } from '../services/consultar-temas.service';
 import { ConsultarCasoService } from '../services/consultar-caso.service';
+import {DateAdapter, MAT_DATE_LOCALE} from "@angular/material/core";
+import {TicketsService} from "../services/tickets.service";
 
 @Component({
   selector: 'app-post-ticket',
@@ -35,12 +37,14 @@ export class PostTicketComponent implements OnInit {
   public listaGerencia: Array<any> =[];
   public listaCasos: Array<any> =[];
   public listaTemas: Array<any> = [];
+  public listaTickets: Array<any> = [];
   constructor(
     private _postService: TicketService,
     private _dialogRef: MatDialogRef<PostTicketComponent>,
     private _gerenciaService: ConsultarGerenciaService,
     private _temaService: ConsultarTemasService,
-    private _casoService: ConsultarCasoService
+    private _casoService: ConsultarCasoService,
+    private _getTicket: TicketsService
     ){}
 
   ngOnInit(): void {
@@ -131,5 +135,40 @@ export class PostTicketComponent implements OnInit {
         console.info("Error: "+err)
       },
     })
+  }
+
+  //Consultar lista de tickets
+  consultarTickets() {
+    const body: BodyTickets = {
+      datos: [
+        {
+          id: "2",
+          valor: this.agregarTicket.get('ticket')?.value.toString(),
+          nombreFiltro: "ticket"
+        }
+      ]
+    };
+    this._getTicket.obtenerTicket(body).subscribe({
+      next: (response) => {
+        if (response.codigoRespuesta == "000") {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Ya existe el ticket ' + `${this.agregarTicket.get('ticket')?.value}`,
+            text: 'Por favor validar e intente de nuevo',
+          })
+          this.limpiarCampo();
+
+        }
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
+  }
+
+  limpiarCampo(){
+    this.agregarTicket.patchValue({
+      ticket: ""
+    });
   }
 }

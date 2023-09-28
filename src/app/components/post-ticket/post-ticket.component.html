@@ -7,7 +7,7 @@
           <div class="col">
             <mat-form-field class="example-form-field" appearance="fill">
               <mat-label>Ticket</mat-label>
-              <input matInput id="ticket" class="form-control" formControlName="ticket">
+              <input matInput id="ticket" class="form-control" formControlName="ticket" (blur)="consultarTickets()">
             </mat-form-field>
           </div>
           <div class="col">
@@ -63,7 +63,7 @@
             <mat-form-field class="example-full-width-1" appearance="fill">
               <mat-label>Fecha solución</mat-label>
               <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="dp3" formControlName="fechaSol">
-              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-hint>DD/MM/YYYY</mat-hint>
               <mat-datepicker-toggle matIconSuffix [for]="dp3"></mat-datepicker-toggle>
               <mat-datepicker #dp3 disabled="false"></mat-datepicker>
             </mat-form-field>
