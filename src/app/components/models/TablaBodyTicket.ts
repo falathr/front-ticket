@@ -12,3 +12,10 @@ export interface GetTickets {
   descDeLey: string;
   observaciones: string;
 }
+
+export interface GetGestionTickets{
+  descripcion: string;
+  responsableId: string;
+  fechaDescri: string;
+  ticketId: string;
+}

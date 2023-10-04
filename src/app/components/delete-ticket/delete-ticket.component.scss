@@ -6,6 +6,13 @@ h1 {
   text-align: center;
 }
 
+.titulo {
+  text-align: center;
+  width: 100%;
+  margin-left: 15px;
+}
+
+
 section {
   padding-right: 30px;
   padding-left: 30px;
@@ -21,13 +28,8 @@ section {
 .main {
   padding: 2% 5%;
 
-  input,
-  select {
+  input {
     text-align: center;
-  }
-
-  div .row .col {
-    width: 50%;
   }
 
   .subtitle {
@@ -41,5 +43,9 @@ section {
     font-size: 19px;
     justify-self: center;
     align-self: center;
+    margin-bottom: 1rem;
+  }
+  .example-form-field-2{
+    width: 350px;
   }
 }

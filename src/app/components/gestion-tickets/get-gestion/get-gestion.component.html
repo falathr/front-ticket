@@ -1,0 +1,68 @@
+<mat-dialog-content class="mat-typography">
+  <section class="container">
+    <div class="main">
+      <h1 class="mb-3 subtitle">GESTIÓN DEL TICKET {{this.capturarId.nombreTicket}}</h1>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="descripcion">
+          <th mat-header-cell *matHeaderCellDef> descripción </th>
+          <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="fechaDescri">
+          <th mat-header-cell *matHeaderCellDef> fecha descripción </th>
+          <td mat-cell *matCellDef="let element"> {{element.fechaDescri}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="responsableId">
+          <th mat-header-cell *matHeaderCellDef> Responsable </th>
+          <td mat-cell *matCellDef="let element"> {{element.responsableId}} </td>
+        </ng-container>
+
+        <!-- <ng-container matColumnDef="fechaDescri">
+          <th mat-header-cell *matHeaderCellDef> Solicitante </th>
+          <td mat-cell *matCellDef="let element"> {{element.solicitante}} </td>
+        </ng-container> -->
+
+        <!-- Nuevo campo: Icono -->
+        <ng-container matColumnDef="iconoEditar">
+          <th mat-header-cell *matHeaderCellDef> Editar </th>
+          <td mat-cell *matCellDef="let element"><button mat-icon-button matTooltip="Basic" aria-label="Example icon-button with a heart icon" (click)="modalPutGestionTicket(element)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="iconoEliminar">
+          <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+          <td mat-cell *matCellDef="let element"><button mat-icon-button matTooltip="Basic" aria-label="Example icon-button with a heart icon" (click)="eliminarGestion(element.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </section>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <div class="btn-container">
+    <div class="btn-opciones">
+      <button id="boton" mat-button class="btn btn-success" (click)="modalPostGestionTicket()">
+        Agregar
+      </button>
+    </div>
+    <div class="btn-adicionar">
+      <button id="boton" mat-button mat-dialog-close class="btn btn-danger">
+        Cerrar
+      </button>
+    </div>
+  </div>
+
+</mat-dialog-actions>
+

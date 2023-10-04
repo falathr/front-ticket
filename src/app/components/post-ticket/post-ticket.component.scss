@@ -1,8 +1,13 @@
 $primary: #198754;
 $secondary: #6db33f;
 
+.mat-typography {
+  padding-right: 5vw;
+}
+
+
 h1 {
-  margin-left: 30px;
+  margin-left: 60px;
   text-align: center;
 
 }
@@ -17,19 +22,16 @@ section {
   display: flex;
   /* Establece el contenedor como un contenedor flexible */
   justify-content: space-between;
+
   /* Distribuye el espacio disponible entre las columnas */
 }
 
 .contenedor .col {
   margin-right: 10px;
+
   /* Esto añade un espacio de 10 píxeles entre las columnas */
 }
 
-
-form {
-  margin: auto;
-  width: fit-content;
-}
 
 body {
   margin: 0;
@@ -46,10 +48,6 @@ body {
     text-align: center;
   }
 
-  div .row .col {
-    width: 50%;
-  }
-
   .subtitle {
     height: 10%;
     background: $primary;
@@ -63,30 +61,45 @@ body {
 }
 
 .example-full-width-1 {
-  width: 433px;
+  width: 770px;
+}
+
+.example-form-field-1 {
+  width: 770px;
+}
+
+.example-form-field{
+  width: 250px;
 }
 
 #boton {
   /* Agrega un borde negro a los botones */
-  border: 1px solid black; /* Grosor del borde y color */
+  border: 1px solid black;
+  /* Grosor del borde y color */
   display: flex;
   justify-content: space-between;
 }
 
 .btn-container {
-  text-align: center; /* Centra los botones */
+  text-align: center;
+  /* Centra los botones */
 }
 
 .btn-opciones,
 .btn-adicionar {
-  display: inline-block; /* Coloca los elementos en línea */
-  margin-right: 10px; /* Ajusta el margen entre los botones según sea necesario */
+  display: inline-block;
+  /* Coloca los elementos en línea */
+  margin-right: 10px;
+  /* Ajusta el margen entre los botones según sea necesario */
 }
 
-// #boton1,
-// #boton2 {
-//   border: 1px solid black;
-//   /* Otros estilos según tus preferencias */
-// }
-
+@media screen and (max-width: 600px) {
+  .contenedor {
+    display: flex;
+    flex-direction: column;
+  }
+  .col {
+    width: 100%;
+  }
+}
 

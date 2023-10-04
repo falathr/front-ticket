@@ -1,7 +1,9 @@
 <mat-dialog-content class="mat-typography">
   <section>
     <div class="main">
-      <h1 class="mb-3 subtitle">ELIMINAR TICKET</h1>
+      <div class="titulo">
+        <h1 class="mb-3 subtitle">ELIMINAR TICKET</h1>
+      </div>
       <form [formGroup]="agregarTicket" class="main-form">
         <div class="row mb-4 contenedor">
           <div>
@@ -10,11 +12,10 @@
               <input matInput placeholder="Ej: FAMISW" formControlName="consultarTick">
             </mat-form-field>
           </div>
-          <div class="centrar-boton"><button mat-raised-button class="btn-buscar" (click)="consultarTickets()">Buscar</button></div>
+          <div class="centrar-boton"><button mat-raised-button class="btn-buscar"
+              (click)="consultarTickets()">Buscar</button></div>
         </div>
       </form>
     </div>
   </section>
 </mat-dialog-content>
-
-

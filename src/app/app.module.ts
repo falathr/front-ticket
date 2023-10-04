@@ -18,11 +18,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { PostTicketComponent } from './components/post-ticket/post-ticket.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { PutTicketComponent } from './components/put-ticket/put-ticket.component';
 import { DeleteTicketComponent } from './components/delete-ticket/delete-ticket.component';
-
+import { DatePipe } from '@angular/common';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { GetGestionComponent } from './components/gestion-tickets/get-gestion/get-gestion.component';
+import { PostGestionComponent } from './components/gestion-tickets/post-gestion/post-gestion.component';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { CustomMatPaginatorIntl } from './components/interfaces/custom-mat-paginator-intl';
+import {MatStepperModule} from '@angular/material/stepper';
+import { PutGestionComponent } from './components/gestion-tickets/put-gestion/put-gestion.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +38,10 @@ import { DeleteTicketComponent } from './components/delete-ticket/delete-ticket.
     GetTicketComponent,
     PostTicketComponent,
     PutTicketComponent,
-    DeleteTicketComponent
+    DeleteTicketComponent,
+    GetGestionComponent,
+    PostGestionComponent,
+    PutGestionComponent
   ],
   imports: [
     BrowserModule,
@@ -50,10 +60,12 @@ import { DeleteTicketComponent } from './components/delete-ticket/delete-ticket.
     ReactiveFormsModule,
     MatSelectModule,
     MatNativeDateModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatPaginatorModule,
+    MatStepperModule
 
   ],
-  providers: [],
+  providers: [DatePipe, { provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl }, { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

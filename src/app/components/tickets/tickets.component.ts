@@ -22,7 +22,7 @@ export class TicketsComponent implements OnInit {
 
   modalGetTicket() {
     this.dialog.open(GetTicketComponent, {
-      minWidth: '50px',
+      maxWidth: '90vw',
       enterAnimationDuration: 500
     })
   }
@@ -31,6 +31,7 @@ export class TicketsComponent implements OnInit {
   agregarTicket() {
     this.dialog.open(PostTicketComponent, {
       minWidth: '500px',
+      maxWidth: '80vw',
       disableClose: true,
       enterAnimationDuration: 500
     });

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -14,8 +14,12 @@ export class TicketsService {
   ) { }
 
   //Metodo get
-  obtenerTicket(body: any): Observable<any>{
-    return this._htpp.post(this.url, body)
+  obtenerTicket(body: any, pagina:number, cantidad: number): Observable<any>{
+    const header: HttpHeaders = new HttpHeaders({
+      "pageNumber": pagina
+    })
+
+    return this._htpp.post(this.url, body, {headers:header})
   }
 
 }

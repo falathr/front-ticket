@@ -4,13 +4,8 @@ $secondary: #6db33f;
 .main {
   padding: 2% 5%;
 
-  input,
-  select {
+  input {
     text-align: center;
-  }
-
-  div .row .col {
-    width: 50%;
   }
 
   .subtitle {
@@ -26,3 +21,16 @@ $secondary: #6db33f;
     align-self: center;
   }
 }
+
+.paginator-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  height: 5vh;
+}
+
+.mat-typography{
+  max-width: 90vw;
+}
+
+

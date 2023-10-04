@@ -3,7 +3,7 @@
     <div class="main">
       <h1 class="mb-3 subtitle">AGREGAR TICKET</h1>
       <form [formGroup]="agregarTicket" class="main-form">
-        <div class="row mb-4 contenedor">
+        <div class="row contenedor">
           <div class="col">
             <mat-form-field class="example-form-field" appearance="fill">
               <mat-label>Ticket</mat-label>
@@ -19,16 +19,8 @@
               </mat-select>
             </mat-form-field>
           </div>
-        </div>
-        <div class="row mb-4 contenedor">
           <div class="col">
-            <mat-form-field class="example-form-field-1" appearance="fill">
-              <mat-label>Descripción</mat-label>
-              <textarea matInput id="descripcion" class="form-control" formControlName="descripcion"></textarea>
-            </mat-form-field>
-          </div>
-          <div class="col">
-            <mat-form-field lass="example-form-field" appearance="fill">
+            <mat-form-field class="example-form-field" appearance="fill">
               <mat-label>Tema</mat-label>
               <mat-select formControlName="tema">
                 <mat-option *ngFor="let temas of listaTemas" value="{{temas.id}}">
@@ -38,8 +30,15 @@
             </mat-form-field>
           </div>
         </div>
-
-        <div class="row mb-4 contenedor">
+        <div class="row contenedor">
+          <div class="col">
+            <mat-form-field class="example-form-field-1" appearance="fill">
+              <mat-label>Descripción</mat-label>
+              <textarea matInput id="descripcion" class="form-control" formControlName="descripcion"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row contenedor">
           <div class="col">
             <mat-form-field class="example-form-field" appearance="fill">
               <mat-label>Solicitante</mat-label>
@@ -47,7 +46,7 @@
             </mat-form-field>
           </div>
           <div class="col">
-            <mat-form-field lass="example-form-field" appearance="fill">
+            <mat-form-field class="example-form-field" appearance="fill">
               <mat-label>Gerencia</mat-label>
               <mat-select formControlName="gerencia">
                 <mat-option *ngFor="let gerencias of listaGerencia" value="{{gerencias.id}}">
@@ -56,9 +55,15 @@
               </mat-select>
             </mat-form-field>
           </div>
+          <div class="col">
+            <mat-form-field class="example-form-field" appearance="fill">
+              <mat-label>Responsable</mat-label>
+              <input matInput id="responsable" class="form-control" formControlName="responsable">
+            </mat-form-field>
+          </div>
         </div>
 
-        <div class="row mb-4 contenedor">
+        <div class="row contenedor">
           <div class="col">
             <mat-form-field class="example-full-width-1" appearance="fill">
               <mat-label>Fecha solución</mat-label>
@@ -69,26 +74,7 @@
             </mat-form-field>
           </div>
         </div>
-        <div class="row mb-4 contenedor">
-          <div class="col">
-            <mat-form-field class="example-form-field" appearance="fill">
-              <mat-label>Responsable</mat-label>
-              <input matInput id="responsable" class="form-control" formControlName="responsable">
-            </mat-form-field>
-          </div>
-          <div class="col">
-            <mat-form-field lass="example-form-field" appearance="fill">
-              <mat-label>Estado TI</mat-label>
-              <mat-select formControlName="estadoTI">
-                <mat-option *ngFor="let casosLista of listaCasos" value="{{casosLista.id}}">
-                  {{casosLista.desc}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </div>
-
-        <div class="row mb-4 contenedor">
+        <div class="row contenedor">
           <div class="col">
             <mat-form-field class="example-form-field" appearance="fill">
               <mat-label>Requerido</mat-label>
@@ -107,9 +93,19 @@
               </mat-select>
             </mat-form-field>
           </div>
+          <div class="col">
+            <mat-form-field class="example-form-field" appearance="fill">
+              <mat-label>Estado TI</mat-label>
+              <mat-select formControlName="estadoTI">
+                <mat-option *ngFor="let casosLista of listaCasos" value="{{casosLista.id}}">
+                  {{casosLista.desc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
         </div>
 
-        <div class="row mb-4 contenedor">
+        <div class="row contenedor">
           <div>
             <mat-form-field class="example-full-width-1" appearance="fill">
               <mat-label>observaciones</mat-label>

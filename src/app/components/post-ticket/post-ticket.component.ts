@@ -62,6 +62,16 @@ export class PostTicketComponent implements OnInit {
   };
 
   postTicket(){
+    const fechaDescString: string | null | undefined = this.agregarTicket.get('fechaSol')?.value; // Suponiendo que 'fecha' es una cadena en el formato 'YYYY-MM-DD'
+    let fechaFormateada: any = 0;
+    if (fechaDescString) {
+      const fechaDesc: Date = new Date(fechaDescString);
+      const dia = String(fechaDesc.getDate()).padStart(2, '0');
+      const mes = String(fechaDesc.getMonth() + 1).padStart(2, '0');
+      const anio = fechaDesc.getFullYear();
+
+      fechaFormateada = `${dia}-${mes}-${anio}`;
+    }
     let bodyTickets: BodyDatosPost = {
       tema: this.agregarTicket.get('tema')?.value,
       ticket: this.agregarTicket.get('ticket')?.value,
@@ -69,7 +79,7 @@ export class PostTicketComponent implements OnInit {
       descripcion: this.agregarTicket.get('descripcion')?.value,
       solicitante: this.agregarTicket.get('solicitante')?.value,
       gerencia: this.agregarTicket.get('gerencia')?.value,
-      fechaSol: this.agregarTicket.get('fechaSol')?.value,
+      fechaSol: fechaFormateada,
       responsable: this.agregarTicket.get('responsable')?.value,
       estadoTI: this.agregarTicket.get('estadoTI')?.value,
       requerido: this.agregarTicket.get('requerido')?.value,
@@ -148,7 +158,7 @@ export class PostTicketComponent implements OnInit {
         }
       ]
     };
-    this._getTicket.obtenerTicket(body).subscribe({
+    this._getTicket.obtenerTicket(body,0,1).subscribe({
       next: (response) => {
         if (response.codigoRespuesta == "000") {
           Swal.fire({

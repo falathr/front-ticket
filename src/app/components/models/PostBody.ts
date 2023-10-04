@@ -14,3 +14,12 @@ export class BodyDatosPost{
     observaciones:String
   ){}
 }
+
+export class BodyDatosPostGestion{
+  constructor(
+    fechaDesc:String,
+    responsable:String,
+    ticket:String,
+    desc:String
+  ){}
+}

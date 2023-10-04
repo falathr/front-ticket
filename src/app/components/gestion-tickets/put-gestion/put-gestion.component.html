@@ -1,0 +1,52 @@
+<mat-dialog-content class="mat-typography">
+  <section>
+    <div class="main">
+      <h1 class="mb-3 subtitle">AGREGAR GESTIÓN TICKET {{this.capturarDatos.nombreTicket}}</h1>
+      <form [formGroup]="editarGestionForm" class="main-form">
+        <div class="row mb-4 contenedor">
+          <div class="col">
+            <mat-form-field class="example-form-field" appearance="fill">
+              <mat-label>Descripción</mat-label>
+              <textarea matInput id="descripcion" class="form-control" formControlName="descripcion" required></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row mb-4 contenedor">
+          <div class="col">
+            <mat-form-field class="example-form-field" appearance="fill">
+              <mat-label>Fecha gestión</mat-label>
+              <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="dp3" formControlName="fecha" required>
+              <mat-hint>DD/MM/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="dp3"></mat-datepicker-toggle>
+              <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="example-form-field" appearance="fill">
+              <mat-label>Responsable</mat-label>
+              <mat-select formControlName="responsable">
+                <mat-option *ngFor="let resLista of listaResponsables" value="{{resLista.id}}">
+                  {{resLista.nombres}} {{resLista.apellidos}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <div class="btn-container">
+    <div class="btn-opciones">
+      <button id="boton" mat-button class="btn btn-success" (click)="actualizarDatos()">
+        Guardar
+      </button>
+    </div>
+    <div class="btn-adicionar">
+      <button id="boton" mat-button mat-dialog-close class="btn btn-danger">
+        Cerrar
+      </button>
+    </div>
+  </div>
+</mat-dialog-actions>

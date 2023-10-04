@@ -36,7 +36,7 @@ export class DeleteTicketComponent implements OnInit{
         }
       ]
     };
-    this._getTicket.obtenerTicket(body).subscribe({
+    this._getTicket.obtenerTicket(body,0,1).subscribe({
       next: (response) => {
         if (response.codigoRespuesta == "000") {
           if (response.datos == null) {

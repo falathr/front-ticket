@@ -129,7 +129,7 @@ export class PutTicketComponent implements OnInit {
         }
       ]
     };
-    this._getTicket.obtenerTicket(body).subscribe({
+    this._getTicket.obtenerTicket(body,0,1).subscribe({
       next: (response) => {
         if (response.codigoRespuesta == "000") {
           if (response.datos == null) {
@@ -160,7 +160,10 @@ export class PutTicketComponent implements OnInit {
   //cargar los datos despues de seleccionar el ticket
   cargarDatos() {
     for(let tick of this.listaTickets){
+      let fechaOriginal = new Date(tick.fechaSol); // Convierte la cadena a un objeto de fecha
+      let fechaSumada = new Date(fechaOriginal.getTime()); // Crea una copia para no modificar la original
 
+      fechaSumada.setDate(fechaOriginal.getDate() + 1); // Suma un día
 
     this.agregarTicket.patchValue({
       ticket: tick.ticket,
@@ -169,7 +172,7 @@ export class PutTicketComponent implements OnInit {
       descripcion: tick.descricion,
       solicitante: tick.solicitante,
       gerencia: tick.gerencia.toString(),
-      fechaSol: tick.fechaSol,
+      fechaSol: fechaSumada.toISOString(),
       responsable: tick.responsable,
       estadoTI: tick.caso.toString(),
       requerido: tick.requerido.toString(),
@@ -182,6 +185,16 @@ export class PutTicketComponent implements OnInit {
   }
 
   actualizarTicket() {
+    const fechaDescString: string | null | undefined = this.agregarTicket.get('fechaSol')?.value; // Suponiendo que 'fecha' es una cadena en el formato 'YYYY-MM-DD'
+    let fechaFormateada: any = 0;
+    if (fechaDescString) {
+      const fechaDesc: Date = new Date(fechaDescString);
+      const dia = String(fechaDesc.getDate()).padStart(2, '0');
+      const mes = String(fechaDesc.getMonth() + 1).padStart(2, '0');
+      const anio = fechaDesc.getFullYear();
+
+      fechaFormateada = `${dia}-${mes}-${anio}`;
+    }
     let bodyTickets: BodyDatosPost = {
       tema: this.agregarTicket.get('tema')?.value,
       ticket: this.agregarTicket.get('ticket')?.value,
@@ -189,7 +202,7 @@ export class PutTicketComponent implements OnInit {
       descripcion: this.agregarTicket.get('descripcion')?.value,
       solicitante: this.agregarTicket.get('solicitante')?.value,
       gerencia: this.agregarTicket.get('gerencia')?.value,
-      fechaSol: this.agregarTicket.get('fechaSol')?.value,
+      fechaSol: fechaFormateada,
       responsable: this.agregarTicket.get('responsable')?.value,
       estadoTI: this.agregarTicket.get('estadoTI')?.value,
       requerido: this.agregarTicket.get('requerido')?.value,
