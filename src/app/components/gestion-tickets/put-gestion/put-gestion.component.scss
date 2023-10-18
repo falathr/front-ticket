@@ -1,15 +1,17 @@
+/* Estilo para el elemento <h1> */
 h1 {
-  margin-left: 30px;
-  text-align: center;
-
+  margin-left: 30px; /* Margen izquierdo de 30 píxeles */
+  text-align: center; /* Alinea el texto al centro */
 }
 
+/* Estilo para los botones de opciones y adición */
 .btn-opciones,
 .btn-adicionar {
   display: inline-block; /* Coloca los elementos en línea */
-  margin-right: 10px; /* Ajusta el margen entre los botones según sea necesario */
+  margin-right: 10px; /* Ajusta el margen derecho entre los botones según sea necesario */
 }
 
+/* Estilo para los campos de formulario dentro de mat-form-field */
 .example-form-field {
-  width: 100%; /* Ajusta el ancho del elemento de entrada dentro del mat-form-field */
+  width: 100%; /* Establece el ancho al 100% del contenedor */
 }

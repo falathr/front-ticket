@@ -1,0 +1,23 @@
+/* Definición de colores */
+$primary: #198754;   /* Color primario (#198754) */
+$secondary: #6db33f; /* Color secundario (#6db33f) */
+
+/* Estilos para encabezados de nivel 1 (h1) */
+h1 {
+  margin-left: 0px;   /* Margen izquierdo de 0 píxeles */
+  text-align: center; /* Centra el texto */
+}
+
+/* Estilos para elementos con clase 'titulo' */
+.titulo {
+  text-align: center; /* Centra el texto */
+  width: 100%;        /* Anchura al 100% del contenedor padre */
+  margin-left: 15px;  /* Margen izquierdo de 15 píxeles */
+}
+
+/* Estilos para elementos con clases 'btn-opciones' y 'btn-adicionar' */
+.btn-opciones,
+.btn-adicionar {
+  display: inline-block; /* Coloca los elementos en línea */
+  margin-right: 10px;   /* Ajusta el margen derecho entre los botones según sea necesario */
+}

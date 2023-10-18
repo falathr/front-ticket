@@ -11,7 +11,8 @@ export class BodyDatosPost{
     caso:String,
     requerido:String,
     deLey:String,
-    observaciones:String
+    observaciones:String,
+    numeroCaso:String
   ){}
 }
 
@@ -21,5 +22,20 @@ export class BodyDatosPostGestion{
     responsable:String,
     ticket:String,
     desc:String
+  ){}
+}
+
+export class BodyDatosPostPersona{
+  constructor(
+    numIdentificacion:String,
+    nombres:String,
+    apellidos:String,
+    direccion:String,
+    telefono:String,
+    email:String,
+    fechaNacimiento:String,
+    sexo:String,
+    actividad:String,
+    estado:String,
   ){}
 }

@@ -11,6 +11,8 @@ import { TicketService } from '../services/post-ticket.service';
 import { BodyDatosPost } from '../models/PostBody';
 import { MatTableDataSource } from '@angular/material/table';
 import { GetTickets } from '../models/TablaBodyTicket';
+import { ConsutlarPeronaResponsableService } from '../services/consutlar-perona-responsable.service';
+import { ConsutlarPeronaSolicitanteService } from '../services/consutlar-perona-solicitante.service';
 
 @Component({
   selector: 'app-put-ticket',
@@ -20,7 +22,8 @@ import { GetTickets } from '../models/TablaBodyTicket';
 export class PutTicketComponent implements OnInit {
 
   public agregarTicket: FormGroup = new FormGroup({
-    ticket: new FormControl(null, [Validators.required]),
+    ticket: new FormControl({ value: null, disabled: true }, [Validators.required]),
+    numeroCaso: new FormControl(null, [Validators.required]),
     tipo: new FormControl(null, [Validators.required]),
     tema: new FormControl(null, [Validators.required]),
     descripcion: new FormControl(null, [Validators.required]),
@@ -41,6 +44,8 @@ export class PutTicketComponent implements OnInit {
   public listaTemas: Array<any> = [];
   public listaTickets: Array<any> = [];
   public dataSource: MatTableDataSource<GetTickets>;
+  public listaPersonaRes: Array<any> = [];
+  public listaPersonaSol: Array<any> = [];
 
   constructor(
     private _dialogRef: MatDialogRef<PutTicketComponent>,
@@ -48,7 +53,9 @@ export class PutTicketComponent implements OnInit {
     private _temaService: ConsultarTemasService,
     private _casoService: ConsultarCasoService,
     private _getTicket: TicketsService,
-    private _putTicket: TicketService
+    private _putTicket: TicketService,
+    private _personaResponsable: ConsutlarPeronaResponsableService,
+    private _personaSolicitante: ConsutlarPeronaSolicitanteService
 
   ) {
     this.dataSource = new MatTableDataSource()
@@ -60,6 +67,8 @@ export class PutTicketComponent implements OnInit {
     this.obtenerCaso();
     this.obtenerTema();
     this.activarCampos();
+    this.obtenerPerResponsable();
+    this.obtenerPerSolicitante();
   }
 
   obtenerGerencia() {
@@ -110,6 +119,38 @@ export class PutTicketComponent implements OnInit {
     })
   }
 
+  obtenerPerResponsable(){
+    this._personaResponsable.obtenerPersonaResponsable().subscribe({
+      next:(result) => {
+          if (result.codigoRespuesta=="000") {
+            this.listaPersonaRes = result.datos;
+          } else {
+            Swal.fire('Error!', `${result.descripcion}`, 'error');
+              this._dialogRef.close();
+          }
+      },
+      error(err) {
+        console.info("Error: "+err)
+      },
+    })
+  }
+
+  obtenerPerSolicitante(){
+    this._personaSolicitante.obtenerPersonaSolicitante().subscribe({
+      next:(result) => {
+          if (result.codigoRespuesta=="000") {
+            this.listaPersonaSol = result.datos;
+          } else {
+            Swal.fire('Error!', `${result.descripcion}`, 'error');
+              this._dialogRef.close();
+          }
+      },
+      error(err) {
+        console.info("Error: "+err)
+      },
+    })
+  }
+
   //Metodo que compara las fechas y deshabilita las fechas superiores al día actual
   myFilter = (d: Date | null): boolean => {
     const today = new Date();
@@ -136,7 +177,6 @@ export class PutTicketComponent implements OnInit {
             console.log(response.descripcionRespuesta);
           } else {
             this.listaTickets = response.datos;
-            console.log(JSON.stringify(this.listaTickets));
             this.cargarDatos();
           }
         }
@@ -149,11 +189,13 @@ export class PutTicketComponent implements OnInit {
 
   //Activa o desbloquea los campos del formualrio
   activarCampos() {
+
     if (this.agregarTicket.get('ticket')?.value == null || this.agregarTicket.get('ticket')?.value == "") {
       this.agregarTicket.disable();
       this.agregarTicket.get('consultarTick')?.enable();
     } else {
       this.agregarTicket.enable();
+      this.agregarTicket.get('ticket')?.disable();
     }
   }
 
@@ -170,14 +212,15 @@ export class PutTicketComponent implements OnInit {
       tipo: tick.tipo.toString(),
       tema: tick.tema.toString(),
       descripcion: tick.descricion,
-      solicitante: tick.solicitante,
+      solicitante: tick.solicitante.toString(),
       gerencia: tick.gerencia.toString(),
       fechaSol: fechaSumada.toISOString(),
-      responsable: tick.responsable,
+      responsable: tick.responsable.toString(),
       estadoTI: tick.caso.toString(),
       requerido: tick.requerido.toString(),
       deLey: tick.deLey.toString(),
-      observaciones: tick.observaciones
+      observaciones: tick.observaciones,
+      numeroCaso: tick.numeroCaso
     });
     this.idTicket= tick.id
     }
@@ -208,11 +251,12 @@ export class PutTicketComponent implements OnInit {
       requerido: this.agregarTicket.get('requerido')?.value,
       deLey: this.agregarTicket.get('deLey')?.value,
       observaciones: this.agregarTicket.get('observaciones')?.value,
+      numeroCaso: this.agregarTicket.get('numeroCaso')?.value
     }
     this._putTicket.actualizarTicket(this.idTicket, bodyTickets).subscribe({
       next: (value) => {
         if (value.codigoRespuesta == "000") {
-          Swal.fire('Guardado!', `${value.descripcion}`, 'success');
+          Swal.fire('Guardado!', `${value.descripcion}` + " del ticket # "+ `${this.agregarTicket.get('ticket')?.value}`, 'success');
           this._dialogRef.close();
         }
       },

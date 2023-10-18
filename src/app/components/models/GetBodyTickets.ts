@@ -7,3 +7,8 @@ export interface BodyDatos{
   valor: String;
   nombreFiltro: String;
 }
+
+export interface Sexo{
+  value: String;
+  desc: String;
+}

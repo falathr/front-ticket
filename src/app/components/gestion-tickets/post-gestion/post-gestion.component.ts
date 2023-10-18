@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 import { BodyDatosPostGestion } from '../../models/PostBody';
-import { ConsultarResponsableService } from '../../services/consultar-responsable.service';
+import { ConsutlarPeronaResponsableService } from '../../services/consutlar-perona-responsable.service';
 import { GestionTicketService } from '../../services/gestion-ticket.service';
 import { GetGestionComponent } from '../get-gestion/get-gestion.component';
 
@@ -14,6 +14,7 @@ import { GetGestionComponent } from '../get-gestion/get-gestion.component';
 })
 export class PostGestionComponent implements OnInit {
 
+  // Variables públicas
   public listaResponsables: Array<any> = [];
   isLinear = false;
   firstFormGroup = this._formBuilder.group({
@@ -26,22 +27,24 @@ export class PostGestionComponent implements OnInit {
     responsable: ['', Validators.required],
   });
   public capturarDatos: any = '';
+
   constructor(
-    private _listaResponsable: ConsultarResponsableService,
+    private _listaResponsable: ConsutlarPeronaResponsableService,
     private _formBuilder: FormBuilder,
     private _gestionTicket: GestionTicketService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<PostGestionComponent>,
     private dialog: MatDialog
   ) {
-    this.capturarDatos = data
+    this.capturarDatos = data;
   }
 
   ngOnInit(): void {
+    // Inicialización al cargar componente
     this.consultarResponsable();
   }
 
-  //Metodo que compara las fechas y deshabilita las fechas superiores al día actual
+  // Método de filtro de fechas
   myFilter = (d: Date | null): boolean => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -49,19 +52,20 @@ export class PostGestionComponent implements OnInit {
     return day <= today.getTime();
   };
 
+  // Consultar responsables
   consultarResponsable() {
-    this._listaResponsable.obtenerResponsable().subscribe({
+    this._listaResponsable.obtenerPersonaResponsable().subscribe({
       next: (value) => {
         if (value.codigoRespuesta == "000") {
-          this.listaResponsables = value.datos
+          this.listaResponsables = value.datos;
         } else if (value.codigoRespuesta == "001") {
           Swal.fire({
             icon: 'error',
             title: `${value.descripcion},` + ` del ticket ${this.capturarDatos.nombreTicket}`,
             showConfirmButton: false,
             timer: 2000
-          })
-          this.dialogRef.close()
+          });
+          this.dialogRef.close();
         }
       },
       error: (error) => {
@@ -70,14 +74,16 @@ export class PostGestionComponent implements OnInit {
           title: `${error}`,
           showConfirmButton: false,
           timer: 2000
-        })
-        this.dialogRef.close()
+        });
+        this.dialogRef.close();
       }
-    })
+    });
   }
 
+  // Agregar gestión de ticket
   agregarGestionTicket() {
-    const fechaDescString: string | null | undefined = this.secondFormGroup.get('fecha')?.value; // Suponiendo que 'fecha' es una cadena en el formato 'YYYY-MM-DD'
+    const fechaDescString: string | null | undefined = this.secondFormGroup.get('fecha')?.value;
+
     let fechaFormateada: any = 0;
     if (fechaDescString) {
       const fechaDesc: Date = new Date(fechaDescString);
@@ -87,12 +93,14 @@ export class PostGestionComponent implements OnInit {
 
       fechaFormateada = `${dia}-${mes}-${anio}`;
     }
+
     let body: BodyDatosPostGestion = {
       fechaDesc: fechaFormateada,
       responsable: this.thirdFormGroup.get('responsable')?.value,
       ticket: this.capturarDatos.id.toString(),
       desc: this.firstFormGroup.get('descripcion')?.value
-    }
+    };
+
     this._gestionTicket.adicionarGestion(body).subscribe({
       next: (value) => {
         if (value.codigoRespuesta == "000") {
@@ -101,8 +109,8 @@ export class PostGestionComponent implements OnInit {
             title: `${value.descripcion},` + ` del ticket ${this.capturarDatos.nombreTicket}`,
             showConfirmButton: false,
             timer: 2000
-          })
-          this.dialogRef.close()
+          });
+          this.dialogRef.close();
         }
         if (value.codigoRespuesta == "001") {
           Swal.fire({
@@ -110,8 +118,8 @@ export class PostGestionComponent implements OnInit {
             title: `${value.descripcion},` + ` del ticket ${this.capturarDatos.nombreTicket}`,
             showConfirmButton: false,
             timer: 2000
-          })
-          this.dialogRef.close()
+          });
+          this.dialogRef.close();
         }
       },
       error: (error) => {
@@ -120,13 +128,15 @@ export class PostGestionComponent implements OnInit {
           title: `${error}`,
           showConfirmButton: false,
           timer: 2000
-        })
-        this.dialogRef.close()
+        });
+        this.dialogRef.close();
       }
-    })
-    this.modalPostGestionTicket()
+    });
+
+    this.modalPostGestionTicket();
   }
 
+  // Abrir modal de gestión de ticket
   modalPostGestionTicket() {
     this.dialog.open(GetGestionComponent, {
       data: {
@@ -134,8 +144,7 @@ export class PostGestionComponent implements OnInit {
         nombreTicket: this.capturarDatos.nombreTicket
       },
       enterAnimationDuration: 500
-    })
-    this.dialogRef.close()
+    });
+    this.dialogRef.close();
   }
-
 }

@@ -1,0 +1,114 @@
+<mat-dialog-content class="mat-typography">
+  <section class="container">
+    <div class="main">
+      <h1 class="mb-3 subtitle">GESTIÓN DE PERSONAS</h1>
+      <!-- Creación de una tabla con datos dinámicos -->
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!-- Definición de columnas -->
+
+        <!-- Identificación -->
+        <ng-container matColumnDef="numeroIdentificacion">
+          <th mat-header-cell *matHeaderCellDef> Identificación </th>
+          <td mat-cell *matCellDef="let element"> {{element.numeroIdentificacion}} </td>
+        </ng-container>
+
+        <!-- Nombres -->
+        <ng-container matColumnDef="nombres">
+          <th mat-header-cell *matHeaderCellDef> Nombres </th>
+          <td mat-cell *matCellDef="let element"> {{element.nombres}} </td>
+        </ng-container>
+
+        <!-- Apellidos -->
+        <ng-container matColumnDef="apellidos">
+          <th mat-header-cell *matHeaderCellDef> Apellidos </th>
+          <td mat-cell *matCellDef="let element"> {{element.apellidos}} </td>
+        </ng-container>
+
+        <!-- Dirección -->
+        <ng-container matColumnDef="direccion">
+          <th mat-header-cell *matHeaderCellDef> Dirección </th>
+          <td mat-cell *matCellDef="let element"> {{element.direccion}} </td>
+        </ng-container>
+
+        <!-- Teléfono -->
+        <ng-container matColumnDef="telefono">
+          <th mat-header-cell *matHeaderCellDef> Teléfono </th>
+          <td mat-cell *matCellDef="let element"> {{element.telefono}} </td>
+        </ng-container>
+
+        <!-- Sexo -->
+        <ng-container matColumnDef="sexo">
+          <th mat-header-cell *matHeaderCellDef> Sexo </th>
+          <td mat-cell *matCellDef="let element"> {{element.sexo}} </td>
+        </ng-container>
+
+        <!-- Email -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email </th>
+          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+
+        <!-- Actividad -->
+        <ng-container matColumnDef="desActividad">
+          <th mat-header-cell *matHeaderCellDef> Actividad </th>
+          <td mat-cell *matCellDef="let element"> {{element.desActividad}} </td>
+        </ng-container>
+
+        <!-- Fecha de nacimiento -->
+        <ng-container matColumnDef="fechaNacimiento">
+          <th mat-header-cell *matHeaderCellDef> Fecha de nacimiento </th>
+          <td mat-cell *matCellDef="let element"> {{element.fechaNacimiento}} </td>
+        </ng-container>
+
+        <!-- Activo -->
+        <ng-container matColumnDef="activo">
+          <th mat-header-cell *matHeaderCellDef> Activo </th>
+          <td mat-cell *matCellDef="let element"> {{element.desEstado}} </td>
+        </ng-container>
+
+        <!-- Editar persona -->
+        <ng-container matColumnDef="iconoEditar">
+          <th mat-header-cell *matHeaderCellDef> Editar persona </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button matTooltip="Basic" aria-label="Example icon-button with a heart icon" (click)="modalPutPersona(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <!-- Eliminar persona -->
+        <ng-container matColumnDef="iconoEliminar">
+          <th mat-header-cell *matHeaderCellDef> Eliminar persona </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button matTooltip="Basic" aria-label="Example icon-button with a heart icon" (click)="eliminarPersona(element.id, element.numeroIdentificacion)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <!-- Filas de la tabla -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </section>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <div class="btn-container">
+    <div class="btn-opciones">
+      <!-- Botón para agregar una persona -->
+      <button id="boton" mat-button class="btn btn-success" (click)="modalPostPersona()">
+        Agregar
+      </button>
+    </div>
+
+    <div class="btn-adicionar">
+      <!-- Botón para cerrar el diálogo -->
+      <button id="boton" mat-button mat-dialog-close class="btn btn-danger">
+        Cerrar
+      </button>
+    </div>
+  </div>
+</mat-dialog-actions>

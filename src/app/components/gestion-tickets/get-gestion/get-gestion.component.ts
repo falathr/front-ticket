@@ -12,40 +12,51 @@ import { PutGestionComponent } from '../put-gestion/put-gestion.component';
   templateUrl: './get-gestion.component.html',
   styleUrls: ['./get-gestion.component.scss']
 })
-export class GetGestionComponent implements OnInit{
+export class GetGestionComponent implements OnInit {
 
+  // Definición de columnas a mostrar en la tabla
   public displayedColumns: string [] = ['descripcion', 'responsableId', 'fechaDescri','iconoEditar','iconoEliminar']
+
+  // Fuente de datos para la tabla
   public dataSource: MatTableDataSource<GetGestionTickets> = new MatTableDataSource();
+
+  // Variable para capturar el ID y otros datos
   public capturarId: any = '';
+
+  // Variable para almacenar el ID
   public id: any = '';
+
   constructor(
     private _gestionTicket: GestionTicketService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialog: MatDialog,
     private dialogRef: MatDialogRef<GetGestionComponent>
   ){
+    // Capturar datos inyectados
     this.capturarId = data
     this.id = this.capturarId.id
   }
 
   ngOnInit(): void {
+    // Inicializar componente, cargar datos, etc.
     this.obtenerListaGestion();
   }
 
-  obtenerListaGestion(){
+  // Método para obtener la lista de gestiones
+  obtenerListaGestion() {
     this._gestionTicket.obtenerGestionTicket(this.id).subscribe({
       next:(value)=> {
           if (value.codigoRespuesta=="000") {
             this.dataSource.data = value.datos;
           } else {
-            console.log("Error con sultando ticket")
+            console.log("Error consultando ticket")
           }
       },
     })
   }
 
-  eliminarGestion(idGestion:number){
-    console.log("Id "+idGestion)
+  // Método para eliminar una gestión
+  eliminarGestion(idGestion:number) {
     Swal.fire({
       title: 'Esta seguro de eliminar?',
       text: "eliminar la gestión del ticket "+`${this.capturarId.nombreTicket}`+"?",
@@ -74,6 +85,7 @@ export class GetGestionComponent implements OnInit{
     })
   }
 
+  // Método para abrir un modal de gestión (Get)
   modalGetGestionTicket(id: number, nombreTicket: string) {
     this.dialog.open(GetGestionComponent, {
       data: {
@@ -84,6 +96,7 @@ export class GetGestionComponent implements OnInit{
     })
   }
 
+  // Método para abrir un modal de gestión (Post)
   modalPostGestionTicket() {
     this.dialog.open(PostGestionComponent, {
       data: {
@@ -95,6 +108,7 @@ export class GetGestionComponent implements OnInit{
     this.dialogRef.close()
   }
 
+  // Método para abrir un modal de gestión (Put)
   modalPutGestionTicket(element: any) {
     this.dialog.open(PutGestionComponent, {
       data: {

@@ -19,15 +19,28 @@
       <mat-icon>delete</mat-icon>
       <span>Borrar Ticket</span>
     </button>
+    <button mat-menu-item (click)="modalReportes()">
+      <mat-icon>
+        assignment
+        </mat-icon>
+      <span>Resportes</span>
+    </button>
+    <button mat-menu-item (click)="modalPersonas()">
+      <mat-icon>
+        groups
+        </mat-icon>
+      <span>Administrar personas</span>
+    </button>
   </mat-menu>
 
   <span>Famisanar tickets</span>
   <span class="example-spacer"></span>
-  <a mat-icon-a class="example-icon favorite-icon" aria-label="Example icon-a with heart icon" href="https://twitter.com/EPS_Famisanar">
+  <a mat-icon-a class="example-icon favorite-icon" aria-label="Example icon-a with heart icon"
+    href="https://twitter.com/EPS_Famisanar">
     <i class="fa-brands fa-x-twitter"></i>
   </a>
-  <a mat-icon-a class="example-icon" aria-label="Example icon-a with share icon" href="https://www.instagram.com/eps_famisanar/">
+  <a mat-icon-a class="example-icon" aria-label="Example icon-a with share icon"
+    href="https://www.instagram.com/eps_famisanar/">
     <i class="fa-brands fa-instagram"></i>
   </a>
 </mat-toolbar>
-

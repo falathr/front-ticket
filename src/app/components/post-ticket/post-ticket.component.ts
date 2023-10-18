@@ -1,17 +1,16 @@
-import {Component, Inject, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDatepicker } from '@angular/material/datepicker';
-import { TicketService } from '../services/post-ticket.service';
+import { MatDialogRef } from '@angular/material/dialog';
+import Swal from 'sweetalert2';
 import { BodyTickets } from '../models/GetBodyTickets';
 import { BodyDatosPost } from '../models/PostBody';
-import Swal from 'sweetalert2';
-import { Dialog } from '@angular/cdk/dialog';
-import { MatDialogRef } from '@angular/material/dialog';
+import { ConsultarCasoService } from '../services/consultar-caso.service';
 import { ConsultarGerenciaService } from '../services/consultar-gerencia.service';
 import { ConsultarTemasService } from '../services/consultar-temas.service';
-import { ConsultarCasoService } from '../services/consultar-caso.service';
-import {DateAdapter, MAT_DATE_LOCALE} from "@angular/material/core";
-import {TicketsService} from "../services/tickets.service";
+import { ConsutlarPeronaResponsableService } from '../services/consutlar-perona-responsable.service';
+import { ConsutlarPeronaSolicitanteService } from '../services/consutlar-perona-solicitante.service';
+import { TicketService } from '../services/post-ticket.service';
+import { TicketsService } from "../services/tickets.service";
 
 @Component({
   selector: 'app-post-ticket',
@@ -22,6 +21,7 @@ export class PostTicketComponent implements OnInit {
 
   public agregarTicket: FormGroup = new FormGroup({
     ticket: new FormControl(null, [Validators.required]),
+    numeroCaso: new FormControl(null, [Validators.required]),
     tipo: new FormControl(null, [Validators.required]),
     tema: new FormControl(null, [Validators.required]),
     descripcion: new FormControl(null, [Validators.required]),
@@ -38,19 +38,26 @@ export class PostTicketComponent implements OnInit {
   public listaCasos: Array<any> =[];
   public listaTemas: Array<any> = [];
   public listaTickets: Array<any> = [];
+  public listaPersonaRes: Array<any> = [];
+  public listaPersonaSol: Array<any> = [];
   constructor(
     private _postService: TicketService,
     private _dialogRef: MatDialogRef<PostTicketComponent>,
     private _gerenciaService: ConsultarGerenciaService,
     private _temaService: ConsultarTemasService,
     private _casoService: ConsultarCasoService,
-    private _getTicket: TicketsService
+    private _getTicket: TicketsService,
+    private _personaResponsable: ConsutlarPeronaResponsableService,
+    private _personaSolicitante: ConsutlarPeronaSolicitanteService
+
     ){}
 
   ngOnInit(): void {
     this.obtenerGerencia();
     this.obtenerCaso();
     this.obtenerTema();
+    this.obtenerPerResponsable();
+    this.obtenerPerSolicitante();
   }
 
   //Metodo que compara las fechas y deshabilita las fechas superiores al día actual
@@ -85,12 +92,14 @@ export class PostTicketComponent implements OnInit {
       requerido: this.agregarTicket.get('requerido')?.value,
       deLey: this.agregarTicket.get('deLey')?.value,
       observaciones: this.agregarTicket.get('observaciones')?.value,
+      numeroCaso: this.agregarTicket.get('numeroCaso')?.value
     }
     this._postService.adicionarTicket(bodyTickets).subscribe({
       next:(value) =>{
           if (value.codigoRespuesta == "000") {
-            Swal.fire('Guardado!', `${value.descripcion}`, 'success');
+            Swal.fire('Guardado!', `${value.descripcion}` + ` del ticket # ${this.agregarTicket.get('ticket')?.value}`, 'success');
               this._dialogRef.close();
+
           }
       },
       error:(error)=>{
@@ -147,6 +156,38 @@ export class PostTicketComponent implements OnInit {
     })
   }
 
+  obtenerPerResponsable(){
+    this._personaResponsable.obtenerPersonaResponsable().subscribe({
+      next:(result) => {
+          if (result.codigoRespuesta=="000") {
+            this.listaPersonaRes = result.datos;
+          } else {
+            Swal.fire('Error!', `${result.descripcion}`, 'error');
+              this._dialogRef.close();
+          }
+      },
+      error(err) {
+        console.info("Error: "+err)
+      },
+    })
+  }
+
+  obtenerPerSolicitante(){
+    this._personaSolicitante.obtenerPersonaSolicitante().subscribe({
+      next:(result) => {
+          if (result.codigoRespuesta=="000") {
+            this.listaPersonaSol = result.datos;
+          } else {
+            Swal.fire('Error!', `${result.descripcion}`, 'error');
+              this._dialogRef.close();
+          }
+      },
+      error(err) {
+        console.info("Error: "+err)
+      },
+    })
+  }
+
   //Consultar lista de tickets
   consultarTickets() {
     const body: BodyTickets = {
@@ -165,6 +206,7 @@ export class PostTicketComponent implements OnInit {
             icon: 'warning',
             title: 'Ya existe el ticket ' + `${this.agregarTicket.get('ticket')?.value}`,
             text: 'Por favor validar e intente de nuevo',
+            didClose: () => { document.getElementById('ticket')?.focus(); }
           })
           this.limpiarCampo();
 

@@ -1,31 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { BodyTickets } from '../models/GetBodyTickets';
-import { FormControl, FormGroup } from '@angular/forms';
-import { TicketsService } from '../services/tickets.service';
-import Swal from 'sweetalert2';
-import { TicketService } from '../services/post-ticket.service';
+import { BodyTickets } from '../models/GetBodyTickets'; // Importación de modelo para cuerpo de tickets
+import { FormControl, FormGroup } from '@angular/forms'; // Importación de FormControl y FormGroup desde Angular forms
+import { TicketsService } from '../services/tickets.service'; // Importación de servicio para obtener tickets
+import Swal from 'sweetalert2'; // Importación de librería de alertas
+import { TicketService } from '../services/post-ticket.service'; // Importación de servicio para eliminar tickets
 
 @Component({
   selector: 'app-delete-ticket',
   templateUrl: './delete-ticket.component.html',
   styleUrls: ['./delete-ticket.component.scss']
 })
-export class DeleteTicketComponent implements OnInit{
+export class DeleteTicketComponent implements OnInit {
 
   public agregarTicket: FormGroup = new FormGroup({
-    consultarTick: new FormControl(null)
+    consultarTick: new FormControl(null) // Definición de formulario con un campo para consultar ticket
   });
+
   constructor(
-    private _getTicket: TicketsService,
-    private _deleteTicket: TicketService
-  ){
+    private _getTicket: TicketsService, // Inyección de servicio para obtener tickets
+    private _deleteTicket: TicketService // Inyección de servicio para eliminar tickets
+  ) { }
 
-  }
   ngOnInit(): void {
-
+    // Lógica que se ejecuta al inicializar el componente
   }
 
-  //Consultar lista de tickets
+  // Método para consultar lista de tickets
   consultarTickets() {
     const body: BodyTickets = {
       datos: [
@@ -36,19 +36,18 @@ export class DeleteTicketComponent implements OnInit{
         }
       ]
     };
-    this._getTicket.obtenerTicket(body,0,1).subscribe({
+    this._getTicket.obtenerTicket(body, 0, 1).subscribe({
       next: (response) => {
         if (response.codigoRespuesta == "000") {
           if (response.datos == null) {
             console.log(response.descripcionRespuesta);
-
           } else {
-            //console.log(JSON.stringify(response.datos))
             let ticket = response.datos;
-            for (let idTicket of ticket){
+            for (let idTicket of ticket) {
+              // Alerta de confirmación para eliminar ticket
               Swal.fire({
                 title: 'Esta seguro de eliminar?',
-                text: "eliminar el ticket "+`${idTicket.ticket}`+"?",
+                text: "eliminar el ticket " + `${idTicket.ticket}` + "?",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -56,11 +55,10 @@ export class DeleteTicketComponent implements OnInit{
                 confirmButtonText: 'Si, eliminar!'
               }).then((result) => {
                 if (result.isConfirmed) {
-                  this.eliminarTicket(idTicket.id);
+                  this.eliminarTicket(idTicket.id); // Llama a la función de eliminación si el usuario confirma
                 }
               })
             }
-
           }
         } else if (response.codigoRespuesta == "001") {
           Swal.fire({
@@ -76,29 +74,27 @@ export class DeleteTicketComponent implements OnInit{
     });
   }
 
-
-  eliminarTicket(id: number){
+  // Método para eliminar ticket
+  eliminarTicket(id: number) {
     this._deleteTicket.borrarTicket(id).subscribe({
-      next:(value) => {
-          if (value.codigoRespuesta=="000") {
-            Swal.fire(
-              'Eliminado!',
-              'El Ticket ha sido eliminado',
-              'success'
-            )
-          } else {
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'No se encontró ningún ticket!',
-            })
-          }
+      next: (value) => {
+        if (value.codigoRespuesta == "000") {
+          Swal.fire(
+            'Eliminado!',
+            'El Ticket ha sido eliminado',
+            'success'
+          )
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'No se encontró ningún ticket!',
+          })
+        }
       },
       error: (error) => {
         console.log(error);
       }
     })
   }
-
-
 }

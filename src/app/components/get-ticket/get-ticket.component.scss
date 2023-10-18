@@ -1,36 +1,36 @@
-$primary: #198754;
-$secondary: #6db33f;
+$primary: #198754; // Definiendo el color primario
+$secondary: #6db33f; // Definiendo el color secundario
 
 .main {
-  padding: 2% 5%;
+  padding: 2% 5%; // Añadiendo espacio interno al contenedor principal
 
   input {
-    text-align: center;
+    text-align: center; // Alineando el texto en los inputs al centro
   }
 
   .subtitle {
-    height: 10%;
-    background: $primary;
-    color: white;
-    padding: 2px;
-    border: solid $primary 1px;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 19px;
-    justify-self: center;
-    align-self: center;
+    height: 10%; // Estableciendo la altura del subtítulo
+    background: $primary; // Asignando el color primario de fondo
+    color: white; // Estableciendo el color del texto
+    padding: 2px; // Añadiendo espacio interno al subtítulo
+    border: solid $primary 1px; // Definiendo borde al subtítulo
+    border-radius: 5px; // Añadiendo bordes redondeados
+    text-align: center; // Alineando el texto al centro
+    font-size: 19px; // Tamaño de fuente
+    justify-self: center; // Alineando el subtítulo al centro horizontalmente
+    align-self: center; // Alineando el subtítulo al centro verticalmente
   }
 }
 
 .paginator-container {
-  display: flex;
-  justify-content: center;
-  padding-top: 20px;
-  height: 5vh;
+  display: flex; // Estableciendo el contenedor como elemento flexible
+  justify-content: center; // Alineando el contenido al centro horizontalmente
+  padding-top: 20px; // Añadiendo espacio superior
+  height: 5vh; // Estableciendo altura
 }
 
-.mat-typography{
-  max-width: 90vw;
+.mat-typography {
+  max-width: 90vw; // Estableciendo ancho máximo del elemento de tipografía
 }
 
 

@@ -19,3 +19,16 @@ export interface GetGestionTickets{
   fechaDescri: string;
   ticketId: string;
 }
+
+export interface GetPersona{
+  numeroIdentificacion: string;
+  nombres: string;
+  apellidos: string;
+  direccion: string;
+  telefono: string;
+  email: string;
+  fechaNacimiento: string;
+  sexo: string;
+  actividad: string;
+  desActividad: string;
+}

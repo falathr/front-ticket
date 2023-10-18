@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { BodyDatosPostGestion } from '../../models/PostBody';
 import { GestionTicketService } from '../../services/gestion-ticket.service';
 import { GetGestionComponent } from '../get-gestion/get-gestion.component';
+import { ConsutlarPeronaResponsableService } from '../../services/consutlar-perona-responsable.service';
 
 @Component({
   selector: 'app-put-gestion',
@@ -23,7 +24,7 @@ export class PutGestionComponent implements OnInit {
   public listaResponsables: Array<any> = [];
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private _listaResponsable: ConsultarResponsableService,
+    private _listaResponsable: ConsutlarPeronaResponsableService,
     private dialogRef: MatDialogRef<PutGestionComponent>,
     private dialog: MatDialog,
     private _gestionTicket: GestionTicketService
@@ -44,7 +45,7 @@ export class PutGestionComponent implements OnInit {
   };
 
   consultarResponsable() {
-    this._listaResponsable.obtenerResponsable().subscribe({
+    this._listaResponsable.obtenerPersonaResponsable().subscribe({
       next: (value) => {
         if (value.codigoRespuesta == "000") {
           this.listaResponsables = value.datos

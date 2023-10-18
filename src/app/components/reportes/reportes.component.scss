@@ -1,0 +1,73 @@
+$primary: #198754;
+$secondary: #6db33f;
+
+h1 {
+  margin-left: 0px;
+  text-align: center;
+}
+
+.titulo {
+  text-align: center;
+  width: 100%;
+  margin-left: 15px;
+}
+
+
+section {
+  padding-right: 30px;
+  padding-left: 30px;
+  padding-top: 0em;
+}
+
+.contenedor {
+  display: flex;
+  align-items: center;
+}
+
+.contenedor .col {
+  flex: 1;
+  margin-right: 10px; /* Espacio entre los elementos */
+}
+
+.btn-buscar {
+  margin-left: 10px; /* Espacio entre el botón y los otros elementos */
+}
+
+
+.centrar-boton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  padding: 2% 5%;
+
+  input {
+    text-align: center;
+  }
+
+  .subtitle {
+    height: 10%;
+    background: $primary;
+    color: white;
+    padding: 2px;
+    border: solid $primary 1px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 19px;
+    justify-self: center;
+    align-self: center;
+    margin-bottom: 1rem;
+  }
+  .example-form-field-2{
+    width: 350px;
+  }
+}
+
+.paginator-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  height: 5vh;
+}

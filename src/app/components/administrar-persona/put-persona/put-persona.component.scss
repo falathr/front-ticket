@@ -1,0 +1,102 @@
+$primary: #198754;  // Define el color primario
+$secondary: #6db33f;  // Define el color secundario
+
+.mat-typography {
+  padding-right: 5vw;  // Añade un relleno en el lado derecho usando una medida relativa (vw)
+}
+
+h1 {
+  margin-left: 60px;  // Establece un margen izquierdo de 60 píxeles
+  text-align: center;  // Centra el texto dentro del elemento h1
+}
+
+section {
+  padding-right: 30px;  // Añade un relleno en el lado derecho de la sección
+  padding-left: 30px;  // Añade un relleno en el lado izquierdo de la sección
+  padding-top: 0em;  // Establece un relleno en la parte superior con una medida en em
+}
+
+.contenedor {
+  display: flex;  // Establece el contenedor como un contenedor flexible
+  justify-content: space-between;  // Distribuye el espacio disponible entre las columnas
+}
+
+.contenedor .col {
+  margin-right: 10px;  // Añade un espacio de 10 píxeles entre las columnas
+}
+
+body {
+  margin: 0;  // Elimina el margen predeterminado del cuerpo
+  font-family: Roboto, "Helvetica Neue", sans-serif;  // Establece la fuente del cuerpo
+  letter-spacing: 1px;  // Añade espaciado entre caracteres
+}
+
+.main {
+  padding: 2% 5%;  // Añade relleno en todas las direcciones (arriba, derecha, abajo, izquierda)
+
+  input,
+  select {
+    text-align: center;  // Centra el texto dentro de los campos de entrada y selectores
+  }
+
+  div .row .col {
+    width: 50%;  // Establece el ancho de las columnas al 50%
+  }
+
+  .subtitle {
+    height: 10%;  // Establece la altura del elemento al 10%
+    background: $primary;  // Usa el color primario como fondo
+    color: white;  // Establece el color del texto a blanco
+    padding: 2px;  // Añade un pequeño relleno alrededor del texto
+    border: solid $primary 1px;  // Añade un borde sólido con el color primario y un grosor de 1 píxel
+    border-radius: 5px;  // Añade esquinas redondeadas con un radio de 5 píxeles
+    text-align: center;  // Centra el texto dentro del elemento
+    font-size: 19px;  // Establece el tamaño de fuente a 19 píxeles
+  }
+}
+
+.example-form-field-2 {
+  width: 350px;  // Establece el ancho del campo de formulario a 350 píxeles
+}
+
+.example-full-width-1 {
+  width: 770px;  // Establece el ancho a 770 píxeles
+}
+
+.example-form-field-1 {
+  width: 770px;  // Establece el ancho del campo de formulario a 770 píxeles
+}
+
+.example-form-field {
+  width: 250px;  // Establece el ancho del campo de formulario a 250 píxeles
+}
+
+#boton {
+  border: 1px solid black;  // Añade un borde sólido con grosor de 1 píxel y color negro a los botones
+  display: flex;  // Establece el display del botón como un contenedor flexible
+  justify-content: space-between;  // Distribuye el espacio disponible entre los elementos hijos
+}
+
+.btn-container {
+  text-align: center;  // Centra el contenido del contenedor de botones
+}
+
+.btn-opciones,
+.btn-adicionar {
+  display: inline-block;  // Coloca los elementos en línea
+  margin-right: 10px;  // Añade un margen derecho de 10 píxeles entre los botones
+}
+
+.btn-buscar {
+  margin-top: 10px;  // Añade un margen superior de 10 píxeles
+  left: -200px;  // Desplaza el elemento hacia la izquierda por 200 píxeles
+}
+
+.example-form-field2 {
+  width: 120%;  // Establece el ancho al 120% (más ancho que el contenedor padre)
+}
+
+.example-full-width {
+  width: 100%;  // Establece el ancho al 100%
+  margin-left: 40px;  // Añade un margen izquierdo de 40 píxeles
+}

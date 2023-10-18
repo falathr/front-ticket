@@ -30,6 +30,11 @@ import { MatPaginatorIntl } from '@angular/material/paginator';
 import { CustomMatPaginatorIntl } from './components/interfaces/custom-mat-paginator-intl';
 import {MatStepperModule} from '@angular/material/stepper';
 import { PutGestionComponent } from './components/gestion-tickets/put-gestion/put-gestion.component';
+import { ReportesComponent } from './components/reportes/reportes.component';
+import { GetPersonaComponent } from './components/administrar-persona/get-persona/get-persona.component';
+import { PostPersonaComponent } from './components/administrar-persona/post-persona/post-persona.component';
+import { PutPersonaComponent } from './components/administrar-persona/put-persona/put-persona.component';
+import {NgIf} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -41,7 +46,11 @@ import { PutGestionComponent } from './components/gestion-tickets/put-gestion/pu
     DeleteTicketComponent,
     GetGestionComponent,
     PostGestionComponent,
-    PutGestionComponent
+    PutGestionComponent,
+    ReportesComponent,
+    GetPersonaComponent,
+    PostPersonaComponent,
+    PutPersonaComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +71,8 @@ import { PutGestionComponent } from './components/gestion-tickets/put-gestion/pu
     MatNativeDateModule,
     MatDatepickerModule,
     MatPaginatorModule,
-    MatStepperModule
+    MatStepperModule,
+    NgIf
 
   ],
   providers: [DatePipe, { provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl }, { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],

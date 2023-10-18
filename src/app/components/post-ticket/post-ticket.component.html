@@ -5,22 +5,30 @@
       <form [formGroup]="agregarTicket" class="main-form">
         <div class="row contenedor">
           <div class="col">
-            <mat-form-field class="example-form-field" appearance="fill">
+            <mat-form-field class="example-form-field-3" appearance="fill">
               <mat-label>Ticket</mat-label>
               <input matInput id="ticket" class="form-control" formControlName="ticket" (blur)="consultarTickets()">
             </mat-form-field>
           </div>
           <div class="col">
-            <mat-form-field class="example-form-field" appearance="fill">
+            <mat-form-field class="example-form-field-3" appearance="fill">
+              <mat-label>Número Caso</mat-label>
+              <input matInput id="numeroCaso" class="form-control" formControlName="numeroCaso">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row contenedor">
+          <div class="col">
+            <mat-form-field class="example-form-field-3" appearance="fill">
               <mat-label>Tipo</mat-label>
               <mat-select formControlName="tipo">
                 <mat-option value="1">Requerimiento</mat-option>
-                <mat-option value="2">SIA</mat-option>
+                <mat-option value="2">Hotfix</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
           <div class="col">
-            <mat-form-field class="example-form-field" appearance="fill">
+            <mat-form-field class="example-form-field-3" appearance="fill">
               <mat-label>Tema</mat-label>
               <mat-select formControlName="tema">
                 <mat-option *ngFor="let temas of listaTemas" value="{{temas.id}}">
@@ -42,7 +50,11 @@
           <div class="col">
             <mat-form-field class="example-form-field" appearance="fill">
               <mat-label>Solicitante</mat-label>
-              <input matInput id="solicitante" class="form-control" formControlName="solicitante">
+              <mat-select formControlName="solicitante">
+                <mat-option *ngFor="let solicitantes of listaPersonaSol" value="{{solicitantes.id}}">
+                  {{solicitantes.nombres}} {{solicitantes.apellidos}}
+                </mat-option>
+              </mat-select>
             </mat-form-field>
           </div>
           <div class="col">
@@ -58,7 +70,11 @@
           <div class="col">
             <mat-form-field class="example-form-field" appearance="fill">
               <mat-label>Responsable</mat-label>
-              <input matInput id="responsable" class="form-control" formControlName="responsable">
+              <mat-select formControlName="responsable">
+                <mat-option *ngFor="let responsable of listaPersonaRes" value="{{responsable.id}}">
+                  {{responsable.nombres}} {{responsable.apellidos}}
+                </mat-option>
+              </mat-select>
             </mat-form-field>
           </div>
         </div>

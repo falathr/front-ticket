@@ -1,0 +1,120 @@
+/* Definición de colores */
+$primary: #198754;   /* Color primario (#198754) */
+$secondary: #6db33f; /* Color secundario (#6db33f) */
+
+/* Estilos para el contenedor de texto con formato de Material Typography */
+.mat-typography {
+  padding-right: 5vw; /* Agrega un relleno de 5% del ancho de la ventana a la derecha */
+}
+
+/* Estilos para encabezado de nivel 1 (h1) */
+h1 {
+  margin-left: 60px; /* Margen izquierdo de 60 píxeles */
+  text-align: center; /* Centra el texto */
+}
+
+/* Estilos para sección */
+section {
+  padding-right: 30px; /* Agrega un relleno de 30 píxeles a la derecha */
+  padding-left: 30px; /* Agrega un relleno de 30 píxeles a la izquierda */
+  padding-top: 0em; /* Sin relleno en la parte superior */
+}
+
+/* Estilos para contenedor de filas y columnas */
+.contenedor {
+  display: flex; /* Establece el contenedor como un contenedor flexible */
+  justify-content: space-between; /* Distribuye el espacio disponible entre las columnas */
+}
+
+/* Estilos para las columnas dentro del contenedor */
+.contenedor .col {
+  margin-right: 10px; /* Agrega un margen de 10 píxeles a la derecha (espacio entre columnas) */
+}
+
+/* Estilos generales del cuerpo de la página */
+body {
+  margin: 0; /* Sin márgenes alrededor del cuerpo */
+  font-family: Roboto, "Helvetica Neue", sans-serif; /* Fuente del texto */
+  letter-spacing: 1px; /* Espaciado entre letras */
+}
+
+/* Estilos para el área principal */
+.main {
+  padding: 2% 5%; /* Agrega un relleno del 2% en la parte superior e inferior, y del 5% en los lados */
+
+  /* Estilos para los inputs y selects dentro del área principal */
+  input,
+  select {
+    text-align: center; /* Centra el texto dentro de los inputs y selects */
+  }
+
+  /* Estilos para filas y columnas dentro del área principal */
+  div .row .col {
+    width: 50%; /* Ancho del 50% para las columnas dentro de las filas */
+  }
+
+  /* Estilos para el subtítulo */
+  .subtitle {
+    height: 10%; /* Altura del 10% */
+    background: $primary; /* Fondo con el color primario */
+    color: white; /* Texto en color blanco */
+    padding: 2px; /* Relleno de 2 píxeles */
+    border: solid $primary 1px; /* Borde sólido con color primario y grosor de 1 píxel */
+    border-radius: 5px; /* Bordes redondeados de 5 píxeles */
+    text-align: center; /* Centra el texto */
+    font-size: 19px; /* Tamaño de fuente de 19 píxeles */
+  }
+}
+
+/* Estilos específicos para un campo de formulario */
+.example-form-field-2 {
+  width: 350px; /* Ancho de 350 píxeles */
+}
+
+.example-full-width-1 {
+  width: 770px; /* Ancho de 770 píxeles */
+}
+
+.example-form-field-1 {
+  width: 770px; /* Ancho de 770 píxeles */
+}
+
+.example-form-field {
+  width: 250px; /* Ancho de 250 píxeles */
+}
+
+/* Estilos para el botón */
+#boton {
+  border: 1px solid black; /* Borde de 1 píxel sólido en color negro */
+  display: flex; /* Elementos en línea */
+  justify-content: space-between; /* Distribuye el espacio disponible entre los elementos */
+}
+
+/* Estilos para el contenedor de botones */
+.btn-container {
+  text-align: center; /* Centra los botones */
+}
+
+/* Estilos para los botones de opciones y adición */
+.btn-opciones,
+.btn-adicionar {
+  display: inline-block; /* Elementos en línea */
+  margin-right: 10px; /* Margen derecho de 10 píxeles entre los botones */
+}
+
+/* Estilos específicos para un botón de búsqueda */
+.btn-buscar {
+  margin-top: 10px; /* Margen superior de 10 píxeles */
+  left: -200px; /* Desplaza el botón 200 píxeles a la izquierda */
+}
+
+/* Estilos para un campo de formulario específico */
+.example-form-field2 {
+  width: 120%; /* Ancho del 120% */
+}
+
+/* Estilos para un campo de formulario específico */
+.example-full-width {
+  width: 100%; /* Ancho del 100% */
+  margin-left: 40px; /* Margen izquierdo de 40 píxeles */
+}

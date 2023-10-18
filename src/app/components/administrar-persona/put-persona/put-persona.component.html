@@ -1,0 +1,122 @@
+<mat-dialog-content class="mat-typography">
+  <section>
+    <div class="main">
+      <!-- Título de la sección -->
+      <h1 class="mb-3 subtitle">ACTUALIZAR PERSONA</h1>
+      <!-- Formulario para agregar persona -->
+      <form [formGroup]="agregarPersonaForm" class="main-form">
+        <!-- Primer bloque de campos -->
+        <div class="row mb-4 contenedor">
+          <div class="col">
+            <!-- Campo de Identificación -->
+            <mat-form-field class="example-form-field" appearance="fill">
+              <mat-label>Identificación</mat-label>
+              <input matInput id="numIdentificacion" class="form-control" formControlName="numIdentificacion" required>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <!-- Campo de Nombres -->
+            <mat-form-field class="example-form-field" appearance="fill">
+              <mat-label>Nombres</mat-label>
+              <input matInput id="nombres" class="form-control" formControlName="nombres" required>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <!-- Campo de Apellidos -->
+            <mat-form-field class="example-form-field" appearance="fill">
+              <mat-label>Apellidos</mat-label>
+              <input matInput id="apellidos" class="form-control" formControlName="apellidos" required>
+            </mat-form-field>
+          </div>
+        </div>
+        <!-- Segundo bloque de campos -->
+        <div class="row mb-4 contenedor">
+          <div class="col">
+            <!-- Campo de Dirección -->
+            <mat-form-field class="example-form-field" appearance="fill">
+              <mat-label>Dirección</mat-label>
+              <input matInput id="direccion" class="form-control" formControlName="direccion" required>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <!-- Campo de Teléfono -->
+            <mat-form-field class="example-form-field" appearance="fill">
+              <mat-label>Teléfono</mat-label>
+              <input matInput id="telefono" class="form-control" formControlName="telefono" required>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <!-- Campo de Sexo (Selector) -->
+            <mat-form-field class="example-form-field" appearance="fill">
+              <mat-label>Sexo</mat-label>
+              <mat-select formControlName="sexo">
+                <!-- Opciones de selección de sexo -->
+                <mat-option *ngFor="let listaSexo of sexo" value="{{listaSexo.value}}">
+                  {{listaSexo.desc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <!-- Tercer bloque de campos -->
+        <div class="row mb-4 contenedor">
+          <div class="col">
+            <!-- Campo de Fecha de Nacimiento -->
+            <mat-form-field class="example-form-field1" appearance="fill">
+              <mat-label>Fecha de Nacimiento</mat-label>
+              <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="dp3" formControlName="fechaNacimiento"
+                required>
+              <mat-hint>DD/MM/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="dp3"></mat-datepicker-toggle>
+              <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <!-- Campo de Actividad (Selector) -->
+            <mat-form-field class="example-form-field2" appearance="fill">
+              <mat-label>Actividad</mat-label>
+              <mat-select formControlName="actividad">
+                <!-- Opciones de selección de actividad -->
+                <mat-option *ngFor="let actividad of actividad" value="{{actividad.id}}">
+                  {{actividad.desc}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <!-- Campo de Correo Electrónico -->
+            <mat-form-field class="example-full-width">
+              <mat-label>Email</mat-label>
+              <input type="email" matInput formControlName="email" placeholder="Ej. pat@example.com">
+              <!-- Mensaje de error si el correo no es válido -->
+              <mat-error *ngIf="agregarPersonaForm.get('email')?.hasError('email') && !agregarPersonaForm.get('email')?.hasError('required')">
+                Por favor ingrese un correo válido
+              </mat-error>
+              <!-- Mensaje de error si el campo es obligatorio y está vacío -->
+              <mat-error *ngIf="agregarPersonaForm.get('email')?.hasError('required')">
+                Correo es <strong>obligatorio</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <!-- Contenedor de botones -->
+  <div class="btn-container">
+    <!-- Botón de Guardar -->
+    <div class="btn-opciones">
+      <button id="boton" mat-button class="btn btn-success" [disabled]="!agregarPersonaForm.valid" (click)="actualizarDatos()">
+        Guardar
+      </button>
+    </div>
+    <!-- Botón de Cerrar Diálogo -->
+    <div class="btn-adicionar">
+      <button id="boton" mat-button mat-dialog-close class="btn btn-danger">
+        Cerrar
+      </button>
+    </div>
+  </div>
+</mat-dialog-actions>

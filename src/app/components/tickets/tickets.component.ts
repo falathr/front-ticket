@@ -4,6 +4,8 @@ import { GetTicketComponent } from '../get-ticket/get-ticket.component';
 import { PostTicketComponent } from '../post-ticket/post-ticket.component';
 import { PutTicketComponent } from '../put-ticket/put-ticket.component';
 import { DeleteTicketComponent } from '../delete-ticket/delete-ticket.component';
+import { ReportesComponent } from '../reportes/reportes.component';
+import { GetPersonaComponent } from '../administrar-persona/get-persona/get-persona.component';
 
 @Component({
   selector: 'app-tickets',
@@ -48,6 +50,20 @@ export class TicketsComponent implements OnInit {
 
   modalDeleteTicket() {
     this.dialog.open(DeleteTicketComponent, {
+      minWidth: '100px',
+      enterAnimationDuration: 500
+    })
+  }
+
+  modalReportes() {
+    this.dialog.open(ReportesComponent, {
+      minWidth: '100px',
+      enterAnimationDuration: 500
+    })
+  }
+
+  modalPersonas() {
+    this.dialog.open(GetPersonaComponent, {
       minWidth: '100px',
       enterAnimationDuration: 500
     })

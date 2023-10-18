@@ -5,16 +5,16 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ConsultarResponsableService {
+export class ConsutlarPeronaSolicitanteService {
 
-  private url = 'http://localhost:8080' + '/ServiciosRest/persona';
+  private url = 'http://localhost:8080' + '/ServiciosRest/personaSolicitante';
 
   constructor(
     private _htpp: HttpClient,
   ) { }
 
   //Metodo get
-  obtenerResponsable(): Observable<any>{
+  obtenerPersonaSolicitante(): Observable<any>{
     return this._htpp.get(this.url)
   }
 }

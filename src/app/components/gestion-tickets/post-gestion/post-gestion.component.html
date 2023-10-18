@@ -1,23 +1,32 @@
 <mat-dialog-content class="mat-typography">
   <section>
     <div class="main">
+      <!-- Título de la sección -->
       <h1 class="mb-3 subtitle">AGREGAR GESTIÓN TICKET {{this.capturarDatos.nombreTicket}}</h1>
+      <!-- Stepper (Pasos) -->
       <mat-stepper orientation="vertical" [linear]=true #stepper>
+        <!-- Primer Paso -->
         <mat-step [stepControl]="firstFormGroup">
           <form [formGroup]="firstFormGroup">
+            <!-- Etiqueta del paso -->
             <ng-template matStepLabel>Ingrese la descripción de la gestión</ng-template>
+            <!-- Campo de texto para descripción -->
             <mat-form-field class="example-form-field" appearance="fill">
               <mat-label>Descripción</mat-label>
               <textarea matInput id="descripcion" class="form-control" formControlName="descripcion" required></textarea>
             </mat-form-field>
             <div>
+              <!-- Botón para ir al siguiente paso -->
               <button mat-button matStepperNext>Siguiente</button>
             </div>
           </form>
         </mat-step>
+        <!-- Segundo Paso -->
         <mat-step [stepControl]="secondFormGroup">
           <form [formGroup]="secondFormGroup">
+            <!-- Etiqueta del paso -->
             <ng-template matStepLabel>Seleccione la fecha de la gestión</ng-template>
+            <!-- Campo de selección de fecha -->
             <mat-form-field class="example-full-width-1" appearance="fill">
               <mat-label>Fecha gestión</mat-label>
               <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="dp3" formControlName="fecha" required>
@@ -26,32 +35,41 @@
               <mat-datepicker #dp3 disabled="false"></mat-datepicker>
             </mat-form-field>
             <div>
+              <!-- Botones para volver y continuar -->
               <button mat-button matStepperPrevious>Volver</button>
               <button mat-button matStepperNext>Siguiente</button>
             </div>
           </form>
         </mat-step>
+        <!-- Tercer Paso -->
         <mat-step [stepControl]="thirdFormGroup">
           <form [formGroup]="thirdFormGroup">
+            <!-- Etiqueta del paso -->
             <ng-template matStepLabel>Seleccione el responsable</ng-template>
+            <!-- Campo de selección de responsable -->
             <mat-form-field class="exampl" appearance="fill">
               <mat-label>Responsable</mat-label>
               <mat-select formControlName="responsable">
+                <!-- Opciones de responsable -->
                 <mat-option *ngFor="let resLista of listaResponsables" value="{{resLista.id}}">
                   {{resLista.nombres}} {{resLista.apellidos}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
             <div>
+              <!-- Botones para volver y continuar -->
               <button mat-button matStepperPrevious>Volver</button>
               <button mat-button matStepperNext>Siguiente</button>
             </div>
           </form>
         </mat-step>
+        <!-- Último Paso -->
         <mat-step>
           <ng-template matStepLabel>Terminar</ng-template>
-          <p>You are now done.</p>
+          <!-- Mensaje de finalización -->
+          <p>Ya has terminado.</p>
           <div>
+            <!-- Botones para volver, guardar y resetear -->
             <button mat-button matStepperPrevious>Volver</button>
             <button mat-button (click)="agregarGestionTicket()">Guardar</button>
             <button mat-button (click)="stepper.reset()">Reset</button>
@@ -61,3 +79,13 @@
     </div>
   </section>
 </mat-dialog-content>
+<mat-dialog-actions align="center">
+  <div class="btn-container">
+    <div class="btn-adicionar">
+      <!-- Botón para cerrar el diálogo -->
+      <button id="boton" mat-raised-button mat-dialog-close class="btn btn-danger">
+        Cerrar
+      </button>
+    </div>
+  </div>
+</mat-dialog-actions>

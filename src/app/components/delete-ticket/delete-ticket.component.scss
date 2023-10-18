@@ -1,51 +1,65 @@
-$primary: #198754;
-$secondary: #6db33f;
+$primary: #198754; /* Definición de una variable de color primario */
+
+
+.btn-container {
+  display: flex;
+  justify-content: space-between; /* Esto distribuirá los elementos de forma equitativa */
+}
+
+.centrar-boton,
+.btn-cerrar {
+  flex: 1; /* Esto asegura que ambos botones tengan el mismo ancho y se coloquen uno al lado del otro */
+  margin-right: 10px; /* Esto añade un espacio entre los botones */
+  margin-top: -30px; /* Ajusta el botón hacia arriba */
+}
 
 h1 {
-  margin-left: 0px;
-  text-align: center;
+  margin-left: 0px; /* Margen izquierdo del título h1 */
+  text-align: center; /* Alineación del texto al centro */
 }
 
 .titulo {
-  text-align: center;
-  width: 100%;
-  margin-left: 15px;
+  text-align: center; /* Alineación del texto al centro */
+  width: 100%; /* Ancho del elemento con clase "titulo" al 100% */
+  margin-left: 15px; /* Margen izquierdo de 15 píxeles */
 }
 
-
 section {
-  padding-right: 30px;
-  padding-left: 30px;
-  padding-top: 0em;
+  padding-right: 30px; /* Relleno (padding) en el lado derecho de la sección */
+  padding-left: 30px; /* Relleno (padding) en el lado izquierdo de la sección */
+  padding-top: 0em; /* Relleno (padding) en la parte superior de la sección */
 }
 
 .centrar-boton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+
 }
 
 .main {
-  padding: 2% 5%;
+  padding: 0% 5%; /* Relleno (padding) del 2% arriba y abajo, 5% a la izquierda y derecha */
 
   input {
-    text-align: center;
+    text-align: center; /* Alineación del texto al centro dentro de los inputs */
   }
 
   .subtitle {
-    height: 10%;
-    background: $primary;
-    color: white;
-    padding: 2px;
-    border: solid $primary 1px;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 19px;
-    justify-self: center;
-    align-self: center;
-    margin-bottom: 1rem;
+    height: 10%; /* Altura del elemento con clase "subtitle" al 10% */
+    background: $primary; /* Fondo con el color definido en la variable "primary" */
+    color: white; /* Color del texto blanco */
+    padding: 2px; /* Relleno (padding) de 2 píxeles */
+    border: solid $primary 1px; /* Borde sólido con el color de la variable "primary" y grosor de 1 píxel */
+    border-radius: 5px; /* Bordes redondeados de 5 píxeles */
+    text-align: center; /* Alineación del texto al centro */
+    font-size: 19px; /* Tamaño de fuente de 19 píxeles */
+    justify-self: center; /* Alineación horizontal al centro */
+    align-self: center; /* Alineación vertical al centro */
+    margin-bottom: 1rem; /* Margen inferior de 1 rem */
   }
+
   .example-form-field-2{
-    width: 350px;
+    width: 350px; /* Ancho del elemento con clase "example-form-field-2" a 350 píxeles */
   }
+
+
+
 }

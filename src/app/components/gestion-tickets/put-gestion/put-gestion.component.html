@@ -3,6 +3,7 @@
     <div class="main">
       <h1 class="mb-3 subtitle">AGREGAR GESTIÓN TICKET {{this.capturarDatos.nombreTicket}}</h1>
       <form [formGroup]="editarGestionForm" class="main-form">
+        <!-- Descripción -->
         <div class="row mb-4 contenedor">
           <div class="col">
             <mat-form-field class="example-form-field" appearance="fill">
@@ -11,6 +12,8 @@
             </mat-form-field>
           </div>
         </div>
+
+        <!-- Fecha y Responsable -->
         <div class="row mb-4 contenedor">
           <div class="col">
             <mat-form-field class="example-form-field" appearance="fill">
@@ -36,13 +39,17 @@
     </div>
   </section>
 </mat-dialog-content>
+
 <mat-dialog-actions align="center">
   <div class="btn-container">
+    <!-- Botón Guardar -->
     <div class="btn-opciones">
       <button id="boton" mat-button class="btn btn-success" (click)="actualizarDatos()">
         Guardar
       </button>
     </div>
+
+    <!-- Botón Cerrar -->
     <div class="btn-adicionar">
       <button id="boton" mat-button mat-dialog-close class="btn btn-danger">
         Cerrar

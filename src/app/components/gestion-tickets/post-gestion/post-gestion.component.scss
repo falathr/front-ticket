@@ -1,20 +1,24 @@
+/* Ajustes para el Stepper vertical */
 .mat-stepper-vertical {
-  margin-top: 8px;
+  margin-top: 8px; /* Margen superior de 8 píxeles */
 }
 
+/* Ajustes para el formulario mdc (Material Design Component) */
 .mat-mdc-form-field {
-  margin-top: 16px;
+  margin-top: 16px; /* Margen superior de 16 píxeles */
 }
 
-.example-form-field{
+/* Estilo para el campo de formulario 'example-form-field' */
+.example-form-field {
   width: 100%; /* Establece el ancho al 100% del contenedor */
 }
 
+/* Ajustes para el elemento de entrada dentro de 'mat-form-field' */
 .mat-input-element {
   width: 100%; /* Ajusta el ancho del elemento de entrada dentro del mat-form-field */
 }
 
-.exampl{
-  width: 80%;
+/* Estilo para el campo de formulario 'exampl' */
+.exampl {
+  width: 80%; /* Establece el ancho al 80% del contenedor */
 }
-
