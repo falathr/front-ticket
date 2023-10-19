@@ -170,7 +170,8 @@ export class GetTicketComponent implements OnInit {
     let bodyTickets: BodyDatosPost = {
       tema: elemnt.tema.toString(),
       ticket: this.numClonadoTick.toUpperCase(),
-      tipo: elemnt.tipo.toString(),
+        numeroCaso: elemnt.numeroCaso,
+        tipo: elemnt.tipo.toString(),
       descripcion: elemnt.descricion,
       solicitante: elemnt.solicitante.toString(),
       gerencia: elemnt.gerencia.toString(),
@@ -323,4 +324,3 @@ export class GetTicketComponent implements OnInit {
     });
   }
 }
-
